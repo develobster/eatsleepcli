@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+{% block bootstrap3_title %}feedback{% endblock %}
+
+{% block bootstrap3_content %}
+    <div class='col-lg-3'>
+    <h1>Feedback</h1>
+    {% csrf_token %}
+    <form class='my-ajax-form' method="POST" data-url="/feedback">
+    {{ form.as_p }}
+    <input class='btn btn-default' type='submit' value='Submit' />
+    </form>
+    </div>
+
+
+{% endblock %}
+
+

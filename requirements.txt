@@ -1,0 +1,5 @@
+Django==1.11.8
+django-bootstrap3==9.1.0
+pytz==2017.3
+gunicorn==19.7.1
+whitenoise==3.3.1
