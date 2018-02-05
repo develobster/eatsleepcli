@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.views.generic import FormView
 from feed.forms import FeedbackForm
 from django.conf import settings
-
+from django.core.mail import send_mail
 
 class FeedbackFormView(FormView):
     form_class = FeedbackForm
@@ -34,7 +34,8 @@ class FeedbackFormView(FormView):
             body = 'Входящее сообщение от пользователя ' +\
                    form.cleaned_data.get('name') + ', тел: ' + form.cleaned_data.get('tel') + \
                    ': ' + form.cleaned_data.get('text')
-            msg = MIMEText(body, 'plain', 'utf-8')
+            #msg = MIMEText(body, 'plain', 'utf-8')
+            
             msg['Subject'] = Header(subject, 'utf-8')
             server.starttls()
             server.ehlo()
