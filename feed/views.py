@@ -25,8 +25,8 @@ class FeedbackFormView(FormView):
         if self.request.is_ajax():
             mail_sender = form.cleaned_data.get('email')
             mail_receiver = 'temavandal@gmail.com'
-            username = 'artiksms@mail.ru'
-            password = 'smtprobot@mail.ru'
+            username = 'smtprobot@mail.ru'
+            password = 'Artik7289047'
             server = smtplib.SMTP('smtp.mail.ru:465')
             subject = 'Test email by ' + mail_sender
             body = 'Входящее сообщение от пользователя ' +\
