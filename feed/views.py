@@ -27,6 +27,7 @@ class FeedbackFormView(FormView):
             mail_receiver = 'temavandal@gmail.com'
             username = 'smtprobot@mail.ru'
             password = 'Artik7289047'
+            EMAIL_USE_TLS = True
             server = smtplib.SMTP('smtp.mail.ru:465')
             subject = 'Test email by ' + mail_sender
             body = 'Входящее сообщение от пользователя ' +\
