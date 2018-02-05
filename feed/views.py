@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.generic import FormView
 from feed.forms import FeedbackForm
+from django.conf import settings
 
 
 class FeedbackFormView(FormView):
@@ -23,11 +24,11 @@ class FeedbackFormView(FormView):
     def form_valid(self, form):
         response = super(FeedbackFormView, self).form_valid(form)
         if self.request.is_ajax():
+            send_mail('Тема', 'Тело письма', settings.EMAIL_HOST_USER, ['temavandal@gmail.com'])
             mail_sender = form.cleaned_data.get('email')
             mail_receiver = 'temavandal@gmail.com'
             username = 'smtprobot@mail.ru'
             password = 'Artik7289047'
-            EMAIL_USE_TLS = True
             server = smtplib.SMTP('smtp.mail.ru:465')
             subject = 'Test email by ' + mail_sender
             body = 'Входящее сообщение от пользователя ' +\
