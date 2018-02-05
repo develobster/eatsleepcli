@@ -1,4 +1,4 @@
-import smtplib
+#import smtplib
 from email.header import Header
 from email.mime.text import MIMEText
 from django.http import JsonResponse
@@ -24,24 +24,24 @@ class FeedbackFormView(FormView):
     def form_valid(self, form):
         response = super(FeedbackFormView, self).form_valid(form)
         if self.request.is_ajax():
-            send_mail('Тема', 'Тело письма', settings.EMAIL_HOST_USER, ['temavandal@gmail.com'])
             mail_sender = form.cleaned_data.get('email')
-            mail_receiver = 'temavandal@gmail.com'
-            username = 'smtprobot@mail.ru'
-            password = 'Artik7289047'
-            server = smtplib.SMTP('smtp.mail.ru:465')
+            #mail_receiver = ''
+            #username = ''
+            #password = ''
+            #server = smtplib.SMTP('smtp.mail.ru:465')
             subject = 'Test email by ' + mail_sender
             body = 'Входящее сообщение от пользователя ' +\
                    form.cleaned_data.get('name') + ', тел: ' + form.cleaned_data.get('tel') + \
                    ': ' + form.cleaned_data.get('text')
             #msg = MIMEText(body, 'plain', 'utf-8')
             
-            msg['Subject'] = Header(subject, 'utf-8')
-            server.starttls()
-            server.ehlo()
-            server.login(username, password)
-            server.sendmail(mail_sender, mail_receiver, msg.as_string())
-            server.quit()
+            #msg['Subject'] = Header(subject, 'utf-8')
+            send_mail(subject, body, settings.EMAIL_HOST_USER, ['temavandal@gmail.com'])
+            #server.starttls()
+            #server.ehlo()
+            #server.login(username, password)
+            #server.sendmail(mail_sender, mail_receiver, msg.as_string())
+            #server.quit()
 
             print(form.cleaned_data)
             data = {
